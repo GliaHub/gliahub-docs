@@ -1,4 +1,7 @@
-# Gliahub Comprehensive Scrum Sprint Plan v2
+---
+title: Gliahub Sprints Roadmap
+description: Comprehensive Scrum sprints roadmap for Gliahub.
+---
 
 This roadmap is structured as 2-week Scrum sprints for a 4-person team.
 

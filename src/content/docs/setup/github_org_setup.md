@@ -1,4 +1,7 @@
-# GitHub Organization Setup
+---
+title: GitHub Organization Setup
+description: Recommended repository structure and project board setups on GitHub.
+---
 
 ## Recommended repositories
 

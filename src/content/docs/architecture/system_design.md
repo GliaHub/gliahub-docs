@@ -1,4 +1,7 @@
-# Gliahub System Design v2
+---
+title: Gliahub System Design
+description: Detailed system architecture and design specifications for Gliahub.
+---
 
 ## 1. Product thesis
 

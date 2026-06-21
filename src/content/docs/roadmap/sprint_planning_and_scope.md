@@ -1,4 +1,7 @@
-# Gliahub Comprehensive Scrum Sprint Plan & Scope Roadmap
+---
+title: Gliahub Sprint Planning & Scope
+description: Scrum sprint plan and scope roadmaps for Gliahub.
+---
 
 This document outlines the end-to-end development roadmap and Agile sprint plan for **Gliahub**, structured as **2-week Scrum sprints**. 
 
