@@ -1,0 +1,830 @@
+<!doctype html>
+<html lang="tr" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>synaptix / gliahub — birleşik business + tech sistem tasarımı</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'],
+            mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace']
+          },
+          colors: {
+            ink: '#0f172a',
+            muted: '#475569',
+            paper: '#f8fafc',
+            brand: {
+              50: '#eef2ff', 100: '#e0e7ff', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca', 900: '#312e81'
+            },
+            moss: { 50:'#ecfdf5', 500:'#10b981', 700:'#047857' },
+            amberx: { 50:'#fffbeb', 500:'#f59e0b', 700:'#b45309' }
+          },
+          boxShadow: {
+            soft: '0 20px 70px rgba(15,23,42,.10)',
+            glow: '0 0 0 1px rgba(99,102,241,.12), 0 18px 60px rgba(99,102,241,.18)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @page { size: A4; margin: 15mm; }
+    @media print {
+      .no-print { display:none !important; }
+      body { background:#fff !important; }
+      .paper-section { box-shadow:none !important; border:1px solid #e5e7eb; break-inside: avoid; page-break-inside: avoid; }
+      .page-break { page-break-before: always; }
+      a { color:#0f172a !important; text-decoration:none !important; }
+    }
+    .paper-section { scroll-margin-top: 96px; }
+    .proseish p { margin-bottom: .8rem; line-height: 1.75; color:#334155; }
+    .proseish strong { color:#0f172a; }
+    .tag { display:inline-flex; align-items:center; border-radius:9999px; padding:.25rem .65rem; font-size:.72rem; font-weight:700; letter-spacing:.02em; }
+    .mini-table th { text-align:left; font-weight:800; color:#0f172a; background:#f8fafc; }
+    .mini-table th, .mini-table td { border-bottom:1px solid #e2e8f0; padding:.75rem .9rem; vertical-align:top; }
+    .mini-table tr:last-child td { border-bottom:0; }
+    .codeblock { white-space:pre-wrap; line-height:1.55; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-900 selection:bg-indigo-200 selection:text-indigo-950">
+  <div class="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(99,102,241,.34),transparent_38%),radial-gradient(circle_at_top_right,rgba(16,185,129,.20),transparent_34%),linear-gradient(180deg,#020617_0%,#0f172a_42%,#f8fafc_42%,#f8fafc_100%)]"></div>
+
+  <header class="no-print sticky top-0 z-40 border-b border-white/10 bg-slate-950/78 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3">
+      <a href="#top" class="flex items-center gap-3 text-white">
+        <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-500 font-black shadow-glow">s</span>
+        <span class="text-sm font-semibold tracking-wide">synaptix / gliahub system design</span>
+      </a>
+      <div class="hidden items-center gap-2 md:flex">
+        <a href="#business" class="rounded-full px-3 py-1.5 text-xs font-semibold text-slate-300 hover:bg-white/10 hover:text-white">business</a>
+        <a href="#tech" class="rounded-full px-3 py-1.5 text-xs font-semibold text-slate-300 hover:bg-white/10 hover:text-white">tech</a>
+        <a href="#architecture" class="rounded-full px-3 py-1.5 text-xs font-semibold text-slate-300 hover:bg-white/10 hover:text-white">architecture</a>
+        <a href="#execution" class="rounded-full px-3 py-1.5 text-xs font-semibold text-slate-300 hover:bg-white/10 hover:text-white">execution</a>
+        <a href="#roadmap" class="rounded-full px-3 py-1.5 text-xs font-semibold text-slate-300 hover:bg-white/10 hover:text-white">roadmap</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="mx-auto max-w-7xl px-5 pb-24 pt-10 md:pt-16">
+    <section class="mb-10 overflow-hidden rounded-[2rem] border border-white/10 bg-white/10 p-6 text-white shadow-soft backdrop-blur md:p-10">
+      <div class="grid gap-8 lg:grid-cols-[1.2fr_.8fr] lg:items-end">
+        <div>
+          <div class="mb-4 flex flex-wrap gap-2">
+            <span class="tag bg-white/15 text-white ring-1 ring-white/15">birleşik rapor</span>
+            <span class="tag bg-emerald-400/15 text-emerald-100 ring-1 ring-emerald-300/20">business + tech</span>
+            <span class="tag bg-indigo-400/15 text-indigo-100 ring-1 ring-indigo-300/20">sunuma hazır sistem tasarımı</span>
+          </div>
+          <h1 class="max-w-5xl text-4xl font-black tracking-tight md:text-6xl">synaptix / gliahub için birleşik business, ürün ve teknik sistem tasarımı</h1>
+          <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-200">bu tek dosyalık html; ticari due diligence raporu, teknik stack/scope raporu ve son mimari kararlarımızı birleştirir. ana yön: eeg/meg-first başlayan, marketplace destekli, graph tabanlı low-code/no-code workflow repository platformu.</p>
+        </div>
+        <div class="rounded-3xl border border-white/10 bg-slate-950/50 p-5">
+          <p class="text-xs font-bold uppercase tracking-[.25em] text-slate-400">tek cümle</p>
+          <p class="mt-3 text-xl font-semibold leading-8">datasetleri, workflow graph’larını ve execution run’larını immutable snapshot olarak versiyonlayan; go control plane ile izinleri, marketplace entitlement’larını ve run state’i yöneten; izole python container’larıyla domain plugin’lerini çalıştırıp artifact, report ve provenance üreten bilimsel workflow repository platformu.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="paper-section mb-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-soft md:p-8">
+      <h2 class="text-2xl font-black tracking-tight">karar özeti</h2>
+      <p class="mt-3 max-w-4xl leading-7 text-slate-600">raporların ana önerilerini koruyoruz ama mvp implementation tarafında daha pragmatik bir çizgi seçiyoruz: full k8s/argo başlangıcı yerine docker tabanlı custom go runner ile başla; aynı execution contract’ı ileride argo/kubernetes backend’e taşı.</p>
+      <div class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4"><p class="text-xs font-bold uppercase text-slate-500">versioning</p><p class="mt-2 font-bold">git wrap değil; git-like immutable snapshot + manifest + provenance</p></div>
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4"><p class="text-xs font-bold uppercase text-slate-500">runtime</p><p class="mt-2 font-bold">go control plane + python execution containers</p></div>
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4"><p class="text-xs font-bold uppercase text-slate-500">runner</p><p class="mt-2 font-bold">docker sdk first; containerd/gvisor/k8s/argo later</p></div>
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4"><p class="text-xs font-bold uppercase text-slate-500">plugin spec</p><p class="mt-2 font-bold">canonical json schema + python sdk; yaml optional; xml only adapters</p></div>
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4"><p class="text-xs font-bold uppercase text-slate-500">business</p><p class="mt-2 font-bold">open-source core + paid lab workspace + marketplace + support</p></div>
+      </div>
+    </section>
+
+    <section class="paper-section mb-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-soft md:p-8" id="toc">
+      <h2 class="text-2xl font-black tracking-tight">içindekiler</h2>
+      <div class="mt-5 grid gap-3 text-sm md:grid-cols-2 lg:grid-cols-3">
+        <a class="rounded-2xl bg-slate-50 p-4 font-semibold hover:bg-indigo-50" href="#business">1. business due diligence</a>
+        <a class="rounded-2xl bg-slate-50 p-4 font-semibold hover:bg-indigo-50" href="#market">2. pazar, buyer ve fiyatlama</a>
+        <a class="rounded-2xl bg-slate-50 p-4 font-semibold hover:bg-indigo-50" href="#competitive">3. rekabet ve positioning</a>
+        <a class="rounded-2xl bg-slate-50 p-4 font-semibold hover:bg-indigo-50" href="#tech">4. teknik kapsam ve domain stack</a>
+        <a class="rounded-2xl bg-slate-50 p-4 font-semibold hover:bg-indigo-50" href="#architecture">5. sistem mimarisi</a>
+        <a class="rounded-2xl bg-slate-50 p-4 font-semibold hover:bg-indigo-50" href="#versioning">6. versioning modeli</a>
+        <a class="rounded-2xl bg-slate-50 p-4 font-semibold hover:bg-indigo-50" href="#marketplace">7. plugin marketplace</a>
+        <a class="rounded-2xl bg-slate-50 p-4 font-semibold hover:bg-indigo-50" href="#execution">8. runner ve execution</a>
+        <a class="rounded-2xl bg-slate-50 p-4 font-semibold hover:bg-indigo-50" href="#storage">9. storage, ingest ve 2 tb data</a>
+        <a class="rounded-2xl bg-slate-50 p-4 font-semibold hover:bg-indigo-50" href="#security">10. security, compliance, authz</a>
+        <a class="rounded-2xl bg-slate-50 p-4 font-semibold hover:bg-indigo-50" href="#roadmap">11. roadmap ve gtm</a>
+        <a class="rounded-2xl bg-slate-50 p-4 font-semibold hover:bg-indigo-50" href="#appendix">12. appendix ve karar log’u</a>
+      </div>
+    </section>
+
+    <section id="business" class="paper-section mb-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-soft md:p-8 page-break">
+      <div class="mb-6 flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <p class="text-sm font-black uppercase tracking-[.22em] text-indigo-600">bölüm 1</p>
+          <h2 class="mt-2 text-3xl font-black tracking-tight">business tezi</h2>
+        </div>
+        <span class="tag bg-indigo-50 text-indigo-700 ring-1 ring-indigo-100">toolbox değil, lab operating layer</span>
+      </div>
+      <div class="proseish max-w-none">
+        <p><strong>ana tez:</strong> ürün “bir eeg/meg analiz kütüphanesi daha” olmamalı. mne, eeglab, brainstorm, nilearn, moabb, braindecode ve torcheeg gibi araçları replace etmek yerine; bunların üstünde çalışan, bids-native, yürütülebilir, paylaşılabilir, provenance taşıyan bir workflow collaboration ve reproducibility platformu olmalı.</p>
+        <p>ticari fırsat, açık arşivler ile analiz kütüphaneleri arasındaki boşlukta duruyor. openneuro/dandi/nemar public data ve standartlaştırılmış veri erişimi sağlar; mne/eeglab/brainstorm analiz gücü sağlar; fakat private lab memory, workflow governance, execution history, report generation, private collaboration ve düşük sürtünmeli lab satın alma katmanı hâlâ yeterince ürünleşmiş değil.</p>
+        <p><strong>wedge:</strong> eeg/meg laboratuvarları. çünkü preprocessing zincirleri kırılgan, matlab/python karışımı yaygın, öğrenci turnover’ı yüksek, veri standardı ihtiyacı gerçek ve reproducibility acısı publication/grant zamanında görünür hale geliyor.</p>
+      </div>
+      <div class="mt-6 grid gap-4 lg:grid-cols-3">
+        <div class="rounded-2xl border border-emerald-100 bg-emerald-50 p-5"><h3 class="font-black text-emerald-900">neden şimdi</h3><p class="mt-2 text-sm leading-6 text-emerald-900/80">bids olgunlaştı, public neuroscience data büyüdü, nih dms ve horizon/erc open science baskısı workflow governance ihtiyacını artırdı.</p></div>
+        <div class="rounded-2xl border border-indigo-100 bg-indigo-50 p-5"><h3 class="font-black text-indigo-900">kim kullanır</h3><p class="mt-2 text-sm leading-6 text-indigo-900/80">phd, postdoc, research engineer, pi, neurotech startup, core facility ve university center ekipleri.</p></div>
+        <div class="rounded-2xl border border-amber-100 bg-amber-50 p-5"><h3 class="font-black text-amber-900">kim öder</h3><p class="mt-2 text-sm leading-6 text-amber-900/80">pi/lab budget, grant, core facility recharge, startup r&d, institutional/enterprise bütçesi.</p></div>
+      </div>
+    </section>
+
+    <section id="market" class="paper-section mb-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-soft md:p-8">
+      <p class="text-sm font-black uppercase tracking-[.22em] text-indigo-600">bölüm 2</p>
+      <h2 class="mt-2 text-3xl font-black tracking-tight">pazar sinyalleri, buyer personas ve fiyatlama</h2>
+      <p class="mt-4 max-w-4xl leading-7 text-slate-600">doğrudan “neuroscience workflow platform” tam sayısı güvenilir biçimde kamuya açık olmadığı için, en savunulabilir yaklaşım top-down pazar hikayesi değil; evidence-backed sam/som ve satın alma sinyalleriyle gitmek.</p>
+      <div class="mt-6 overflow-hidden rounded-2xl border border-slate-200">
+        <table class="mini-table w-full text-sm">
+          <thead><tr><th>sinyal</th><th>ticari anlamı</th><th>ürüne etkisi</th></tr></thead>
+          <tbody>
+            <tr><td class="font-bold">bids ekosistem derinliği</td><td>standardın multi-modal hale gelmesi workflow ürününün tek modaliteye sıkışmamasını sağlar.</td><td>bids ingest + validation mvp must-have.</td></tr>
+            <tr><td class="font-bold">public eeg/meg/ieeg veri arzı</td><td>benchmark, reusable template, model zoo ve cross-dataset validation için yeterli ham madde var.</td><td>public template gallery + benchmark workflows değerli.</td></tr>
+            <tr><td class="font-bold">nemar/openneuro/dandi etkisi</td><td>kullanıcı sadece depo değil, discovery + compute + processing katmanı istiyor.</td><td>archive’larla yarışmak yerine üstlerine private workflow layer kur.</td></tr>
+            <tr><td class="font-bold">nih dms / open science</td><td>workflow governance ve data management bütçelenebilir hale geliyor.</td><td>ürünü “fundable research infrastructure” olarak konumlandır.</td></tr>
+            <tr><td class="font-bold">meg ve neurotech yoğunluğu</td><td>meg küçük ama yüksek değerli; neurotech startup daha hızlı satın alabilir.</td><td>lab plan + startup/team plan birlikte sunulmalı.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="mt-8 text-xl font-black">persona matrisi</h3>
+      <div class="mt-4 overflow-hidden rounded-2xl border border-slate-200">
+        <table class="mini-table w-full text-sm">
+          <thead><tr><th>persona</th><th>neden kullanır</th><th>alım rolü</th><th>satın alma anı</th></tr></thead>
+          <tbody>
+            <tr><td class="font-bold">phd öğrencisi</td><td>dağınık kodu toparlamak, önceki scriptleri anlamak, pipeline’ı tekrar koşturmak, methods/report üretmek.</td><td>şampiyon kullanıcı; tek başına nadiren alıcı.</td><td>tez başlangıcı, yeni dataset, paper revision, lab handoff.</td></tr>
+            <tr><td class="font-bold">postdoc</td><td>çoklu dataset/deney koşulu arasında standardize analiz ve hızlı iterasyon.</td><td>güçlü etkileyici.</td><td>multi-study dönemleri, publication baskısı.</td></tr>
+            <tr><td class="font-bold">pi</td><td>lab memory, reproducibility, grant dms uyumu, öğrenci turnover riskini azaltma.</td><td>esas ekonomik alıcı.</td><td>grant yazımı, submission öncesi, çok-siteli proje.</td></tr>
+            <tr><td class="font-bold">research engineer</td><td>ortak pipeline, parametrik execution, audit trail, reusable templates.</td><td>teknik değerlendirici ve bazen alıcı.</td><td>altyapı borcu büyüdüğünde.</td></tr>
+            <tr><td class="font-bold">neurotech startup</td><td>özel veri, benchmark, private execution, ekip içi collaboration.</td><td>doğrudan alıcı.</td><td>mvp’den validation aşamasına geçerken.</td></tr>
+            <tr><td class="font-bold">core facility / center</td><td>servisleşmiş analiz akışı, audit, reporting, standardizasyon.</td><td>kurumsal alıcı.</td><td>çok kullanıcılı servisleşme ve recharge baskısı oluşunca.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="mt-8 text-xl font-black">önerilen fiyat mimarisi</h3>
+      <div class="mt-4 grid gap-4 lg:grid-cols-5">
+        <div class="rounded-2xl border border-slate-200 p-4"><p class="font-black">open-source core</p><p class="mt-2 text-sm text-slate-600">ücretsiz. local runner, basic nodes, code export, public templates.</p></div>
+        <div class="rounded-2xl border border-slate-200 p-4"><p class="font-black">private lab</p><p class="mt-2 text-sm text-slate-600">$249–$399 / lab / ay. private repos, versions, reports, permissions.</p></div>
+        <div class="rounded-2xl border border-slate-200 p-4"><p class="font-black">lab plus</p><p class="mt-2 text-sm text-slate-600">$499–$899 / lab / ay. advanced provenance, audit, benchmark exports, priority support.</p></div>
+        <div class="rounded-2xl border border-slate-200 p-4"><p class="font-black">startup/team</p><p class="mt-2 text-sm text-slate-600">$12k–$25k / yıl. api, onboarding, private controls, support hours.</p></div>
+        <div class="rounded-2xl border border-slate-200 p-4"><p class="font-black">enterprise</p><p class="mt-2 text-sm text-slate-600">$25k–$100k+ / yıl. sso, dpa/baa, private deployment, sla, custom adapters.</p></div>
+      </div>
+      <p class="mt-5 rounded-2xl bg-slate-50 p-4 text-sm leading-6 text-slate-600"><strong class="text-slate-900">fiyat hassasiyeti:</strong> $199–$399/ay bandı düşük sürtünmeli pilot ve paid conversion için daha uygun. $999/ay ancak net support/provenance/team değeri varsa mantıklı. $2.5k/ay ve üzeri artık center/enterprise motion’a döner.</p>
+    </section>
+
+    <section id="competitive" class="paper-section mb-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-soft md:p-8 page-break">
+      <p class="text-sm font-black uppercase tracking-[.22em] text-indigo-600">bölüm 3</p>
+      <h2 class="mt-2 text-3xl font-black tracking-tight">rekabet haritası ve positioning</h2>
+      <div class="mt-6 overflow-hidden rounded-2xl border border-slate-200">
+        <table class="mini-table w-full text-sm">
+          <thead><tr><th>kategori</th><th>oyuncular</th><th>güçlü yan</th><th>synaptix/gliahub wedge</th></tr></thead>
+          <tbody>
+            <tr><td class="font-bold">arşiv / data portal</td><td>openneuro, dandi, nemar</td><td>public data, standards, discovery, snapshots, compute gateway.</td><td>private lab workflow + private-to-public bridge.</td></tr>
+            <tr><td class="font-bold">scientific data management</td><td>pennsieve, flywheel</td><td>data governance, metadata, publishing, enterprise/clinical workflows.</td><td>lighter eeg/meg-native lab workflow, not generic sdm.</td></tr>
+            <tr><td class="font-bold">workflow/reproducibility</td><td>galaxy, code ocean, seqera</td><td>reproducibility, capsules, orchestration, traceability.</td><td>neuroscience-native nodes, bids/nwb semantics, lab memory.</td></tr>
+            <tr><td class="font-bold">analysis libraries</td><td>mne, eeglab, brainstorm, nilearn</td><td>deep scientific capabilities and existing user trust.</td><td>do not replace; orchestrate, version, package, report.</td></tr>
+            <tr><td class="font-bold">benchmark / ml</td><td>moabb, braindecode, torcheeg</td><td>datasets, evaluation, deep learning ergonomics.</td><td>workflow templates + benchmark registry + reproducible model runs.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mt-6 grid gap-4 lg:grid-cols-2">
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5"><h3 class="font-black">positioning cümlesi</h3><p class="mt-2 leading-7 text-slate-600">“reproducible neuroscience workflows, from data to models.” ürün açık arşivlerin ve analiz kütüphanelerinin arasındaki private workflow collaboration + execution + provenance boşluğunu doldurur.</p></div>
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5"><h3 class="font-black">kaçınılacak tuzak</h3><p class="mt-2 leading-7 text-slate-600">“mne alternatifi”, “kaggle for everything”, “generic no-code ai platform” veya “full enterprise clinical platform” gibi geniş pozisyonlar ilk aşamada scope’u dağıtır.</p></div>
+      </div>
+    </section>
+
+    <section id="tech" class="paper-section mb-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-soft md:p-8 page-break">
+      <p class="text-sm font-black uppercase tracking-[.22em] text-indigo-600">bölüm 4</p>
+      <h2 class="mt-2 text-3xl font-black tracking-tight">teknik kapsam ve domain stack</h2>
+      <p class="mt-4 max-w-4xl leading-7 text-slate-600">teknik raporun doğru mental modeli: “workflow editor with neuroscience support” değil; datasets, workflows ve executions adlı üç first-class object etrafında kurulan reproducible neuroscience operating layer.</p>
+      <div class="mt-6 grid gap-4 lg:grid-cols-3">
+        <div class="rounded-2xl border border-indigo-100 bg-indigo-50 p-5"><h3 class="font-black text-indigo-900">dataset</h3><p class="mt-2 text-sm leading-6 text-indigo-900/80">bids primary repository contract; nwb import/export ve rich interchange yolu. raw data git gibi değil, immutable blob + manifest snapshot.</p></div>
+        <div class="rounded-2xl border border-emerald-100 bg-emerald-50 p-5"><h3 class="font-black text-emerald-900">workflow</h3><p class="mt-2 text-sm leading-6 text-emerald-900/80">visual graph + python escape hatch + versioned node contracts + reproducible execution spec.</p></div>
+        <div class="rounded-2xl border border-amber-100 bg-amber-50 p-5"><h3 class="font-black text-amber-900">execution</h3><p class="mt-2 text-sm leading-6 text-amber-900/80">workflow_version + dataset_snapshot + params + runtime digest = immutable run record, artifacts, report, provenance.</p></div>
+      </div>
+
+      <h3 class="mt-8 text-xl font-black">scientific stack kararı</h3>
+      <div class="mt-4 overflow-hidden rounded-2xl border border-slate-200">
+        <table class="mini-table w-full text-sm">
+          <thead><tr><th>bileşen</th><th>rol</th><th>mvp kararı</th></tr></thead>
+          <tbody>
+            <tr><td class="font-bold">mne-python</td><td>eeg/meg/ecog/seeg/nirs analiz, preprocessing, visualization, source estimation, decoding.</td><td>core runtime anchor.</td></tr>
+            <tr><td class="font-bold">pybids + bids validator</td><td>bids dataset query, client/server validation, ingest admission checks.</td><td>mvp must-have.</td></tr>
+            <tr><td class="font-bold">braindecode</td><td>pytorch-native deep learning on raw electrophysiology.</td><td>dl workflow templates.</td></tr>
+            <tr><td class="font-bold">moabb</td><td>eeg benchmarking, datasets, paradigms, evaluation.</td><td>benchmark recipes and model comparison.</td></tr>
+            <tr><td class="font-bold">pynwb + neuroconv</td><td>nwb read/write, proprietary neurophysiology conversion, dandi handoff.</td><td>import/export path, not primary internal truth at day one.</td></tr>
+            <tr><td class="font-bold">eeglab + brainstorm</td><td>important legacy/gui ecosystems.</td><td>adapters/templates, not reimplementation.</td></tr>
+            <tr><td class="font-bold">nilearn</td><td>fmri/source-space/statistical maps, future multimodal expansion.</td><td>roadmap core if fmri scope opens.</td></tr>
+            <tr><td class="font-bold">torcheeg</td><td>plug-and-play eeg dl.</td><td>useful pack, less foundational than mne+braindecode+moabb.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="architecture" class="paper-section mb-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-soft md:p-8">
+      <p class="text-sm font-black uppercase tracking-[.22em] text-indigo-600">bölüm 5</p>
+      <h2 class="mt-2 text-3xl font-black tracking-tight">kapsamlı sistem mimarisi</h2>
+      <p class="mt-4 max-w-4xl leading-7 text-slate-600">nihai karar: teknik rapordaki argo/k8s yönünü roadmap olarak kabul ediyoruz; fakat ilk implementation için k8s’e bağımlı olmayan go control plane + nats + docker runner + python execution images çizgisi seçiyoruz. bu, local-first adoption ve hızlı pilot için daha iyi.</p>
+      <div class="mt-6 rounded-3xl bg-slate-950 p-5 text-slate-100">
+        <pre class="codeblock font-mono text-sm">web app
+next.js / react flow / yjs
+        ↓
+go control plane
+fiber olabilir ama framework implementation detail
+        ↓
+postgres
+metadata, authz, workflow versions, run state, provenance
+        ↓
+nats jetstream
+job queue + event bus
+        ↓
+runner daemon
+go + docker sdk first / containerd later
+        ↓
+python execution containers
+mne / nilearn / duckdb / cv / custom plugins
+        ↓
+s3-compatible object storage
+minio / aws s3 / gcp cloud storage</pre>
+      </div>
+      <div class="mt-6 grid gap-4 lg:grid-cols-2">
+        <div class="rounded-2xl border border-slate-200 p-5"><h3 class="font-black">control plane</h3><p class="mt-2 text-sm leading-6 text-slate-600">org, workspace, authz, project, datasets, workflow drafts/versions, plugin entitlements, run state, billing/usage, audit, provenance.</p></div>
+        <div class="rounded-2xl border border-slate-200 p-5"><h3 class="font-black">execution plane</h3><p class="mt-2 text-sm leading-6 text-slate-600">go runner job claim eder, container başlatır, inputları stage eder, logs stream eder, outputları object storage’a yazar, status/provenance event üretir.</p></div>
+        <div class="rounded-2xl border border-slate-200 p-5"><h3 class="font-black">data plane</h3><p class="mt-2 text-sm leading-6 text-slate-600">raw datasets ve derived artifacts object storage’da; postgres yalnızca metadata, manifest, state ve permission tutar.</p></div>
+        <div class="rounded-2xl border border-slate-200 p-5"><h3 class="font-black">developer plane</h3><p class="mt-2 text-sm leading-6 text-slate-600">json schema plugin contracts, python sdk, oci runtime images, signed manifests, marketplace publish/review pipeline.</p></div>
+      </div>
+    </section>
+
+    <section id="versioning" class="paper-section mb-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-soft md:p-8 page-break">
+      <p class="text-sm font-black uppercase tracking-[.22em] text-indigo-600">bölüm 6</p>
+      <h2 class="mt-2 text-3xl font-black tracking-tight">versioning: git wrap değil, git-like product model</h2>
+      <p class="mt-4 max-w-4xl leading-7 text-slate-600">git kod için mükemmel ama 2 tb fmri/eeg raw data ve binary artifacts için core primitive olmamalı. ürün kaggle notebook versioning gibi “save version / restore / fork / run history / compare” deneyimi vermeli, fakat arka tarafta manifest + immutable snapshot + content hash çalışmalı.</p>
+      <div class="mt-6 grid gap-4 lg:grid-cols-3">
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5"><h3 class="font-black">workflow_version</h3><p class="mt-2 text-sm leading-6 text-slate-600">immutable graph snapshot; parent version, author, message, graph hash, locked dependencies, node versions.</p></div>
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5"><h3 class="font-black">dataset_snapshot</h3><p class="mt-2 text-sm leading-6 text-slate-600">immutable manifest; object keys, paths, sizes, checksums, bids/nwb metadata, validation summary.</p></div>
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5"><h3 class="font-black">execution_run</h3><p class="mt-2 text-sm leading-6 text-slate-600">workflow_version + dataset_snapshot + params + runtime image digest + environment = reproducible run.</p></div>
+      </div>
+      <div class="mt-6 grid gap-4 lg:grid-cols-2">
+        <div class="rounded-2xl bg-slate-950 p-5 text-slate-100"><p class="mb-3 text-xs font-bold uppercase tracking-widest text-slate-400">workflow version object</p><pre class="codeblock font-mono text-xs">{
+  "id": "wv_01hxyz",
+  "workflow_id": "wf_eeg_preprocess",
+  "parent_version_id": "wv_01hxyy",
+  "message": "added ica artifact rejection",
+  "graph_hash": "sha256:...",
+  "locked_dependencies": {
+    "eeg-core": "1.2.0",
+    "python-runtime": "sha256:abc"
+  }
+}</pre></div>
+        <div class="rounded-2xl bg-slate-950 p-5 text-slate-100"><p class="mb-3 text-xs font-bold uppercase tracking-widest text-slate-400">dataset snapshot object</p><pre class="codeblock font-mono text-xs">{
+  "id": "dsnap_01",
+  "dataset_id": "ds_fmri_001",
+  "manifest_hash": "sha256:...",
+  "objects": [{
+    "path": "sub-01/func/bold.nii.gz",
+    "object_key": "tenants/t1/.../sha256/abc",
+    "sha256": "abc...",
+    "size_bytes": 123456789
+  }]
+}</pre></div>
+      </div>
+      <p class="mt-5 rounded-2xl bg-amber-50 p-4 text-sm leading-6 text-amber-900"><strong>git nerede kullanılır?</strong> custom plugin/code geliştirme, github mirror, workflow/code export ve external developer collaboration için. core repository semantics ise git değil, product-native snapshot ve provenance modeli olmalı.</p>
+    </section>
+
+    <section id="workflow" class="paper-section mb-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-soft md:p-8">
+      <p class="text-sm font-black uppercase tracking-[.22em] text-indigo-600">bölüm 7</p>
+      <h2 class="mt-2 text-3xl font-black tracking-tight">graph workflow modeli</h2>
+      <p class="mt-4 max-w-4xl leading-7 text-slate-600">ürün knime benzeri graph tabanlı low-code/no-code workflow editor olacak. fakat her node sadece ui kutusu değil; typed, versioned ve executable contract.</p>
+      <div class="mt-6 overflow-hidden rounded-2xl border border-slate-200">
+        <table class="mini-table w-full text-sm">
+          <thead><tr><th>node contract alanı</th><th>açıklama</th></tr></thead>
+          <tbody>
+            <tr><td class="font-bold">type</td><td>ör: eeg.mne.filter, fmri.nilearn.glm, tabular.duckdb.query.</td></tr>
+            <tr><td class="font-bold">ports</td><td>input/output type contract: mne.Raw, bids.Dataset, nifti.Image, parquet.Table, video.File.</td></tr>
+            <tr><td class="font-bold">params_schema</td><td>json schema ile form generation ve validation.</td></tr>
+            <tr><td class="font-bold">runtime</td><td>plugin package, version, image digest, python version, resource hints.</td></tr>
+            <tr><td class="font-bold">permissions</td><td>network, secrets, filesystem scope, gpu, external api permissions.</td></tr>
+            <tr><td class="font-bold">provenance</td><td>node started/completed/failed, input artifacts, output artifacts, environment digest.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mt-6 rounded-2xl bg-slate-950 p-5 text-slate-100"><pre class="codeblock font-mono text-xs">{
+  "id": "node_filter_1",
+  "type": "eeg.mne.filter",
+  "plugin": "synaptix/eeg-core",
+  "plugin_version": "1.2.0",
+  "inputs": { "raw": "artifact://node_load_1/raw" },
+  "params": { "l_freq": 1.0, "h_freq": 40.0, "method": "fir" },
+  "outputs": { "filtered_raw": { "type": "mne.Raw", "format": "fif" } },
+  "resources": { "cpu": 2, "memory_gb": 8, "timeout_minutes": 30 }
+}</pre></div>
+      <p class="mt-5 text-sm leading-6 text-slate-600">mvp’de workflow graph dag olmalı. loop, dynamic fanout, conditional branching ve streaming execution sonra eklenir. erken aşamada bunları eklemek workflow engine değil yeni programlama dili yazmaya dönüşür.</p>
+    </section>
+
+    <section id="marketplace" class="paper-section mb-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-soft md:p-8 page-break">
+      <p class="text-sm font-black uppercase tracking-[.22em] text-indigo-600">bölüm 8</p>
+      <h2 class="mt-2 text-3xl font-black tracking-tight">plugin marketplace ve entitlement modeli</h2>
+      <p class="mt-4 max-w-4xl leading-7 text-slate-600">marketplace ürünün hem extensibility hem de monetization katmanı. eeg lab yalnızca eeg pack’e erişebilir; cv/behavior pack ayrı abonelik veya tekil satın alma olabilir. kullanıcı kendi local custom node’unu yazabilir; marketplace publish için review/signing gerekir.</p>
+      <div class="mt-6 grid gap-4 lg:grid-cols-3">
+        <div class="rounded-2xl border border-slate-200 p-5"><h3 class="font-black">plugin türleri</h3><p class="mt-2 text-sm leading-6 text-slate-600">node package, workflow template, runtime image, dataset connector, visualization/report block, model/benchmark package, domain pack.</p></div>
+        <div class="rounded-2xl border border-slate-200 p-5"><h3 class="font-black">domain pack’ler</h3><p class="mt-2 text-sm leading-6 text-slate-600">eeg core, meg core, fmri core, behavior/video, tabular analytics, deep learning, clinical reporting.</p></div>
+        <div class="rounded-2xl border border-slate-200 p-5"><h3 class="font-black">publish levels</h3><p class="mt-2 text-sm leading-6 text-slate-600">workspace-local custom node, community plugin, verified plugin, official plugin.</p></div>
+      </div>
+      <div class="mt-6 rounded-2xl bg-slate-950 p-5 text-slate-100"><p class="mb-3 text-xs font-bold uppercase tracking-widest text-slate-400">canonical plugin manifest: json</p><pre class="codeblock font-mono text-xs">{
+  "schema_version": "1.0",
+  "package": "synaptix/eeg-core",
+  "version": "1.2.0",
+  "domain": ["eeg", "meg"],
+  "runtime": {
+    "image": "registry.synaptix.io/eeg-core@sha256:abc",
+    "python": "3.11"
+  },
+  "nodes": [{
+    "id": "eeg.mne.filter",
+    "inputs": { "raw": { "type": "mne.Raw" } },
+    "outputs": { "filtered": { "type": "mne.Raw" } },
+    "params_schema": { "type": "object", "properties": { "l_freq": { "type": "number" } } },
+    "permissions": { "network": false, "filesystem": "workspace-scoped", "secrets": [] }
+  }]
+}</pre></div>
+      <h3 class="mt-8 text-xl font-black">json vs xml vs sdk kararı</h3>
+      <div class="mt-4 grid gap-4 lg:grid-cols-3">
+        <div class="rounded-2xl bg-emerald-50 p-5 text-emerald-950"><p class="font-black">canonical: json schema</p><p class="mt-2 text-sm leading-6">ui form generation, validation, node contract ve marketplace metadata için en temiz yol.</p></div>
+        <div class="rounded-2xl bg-indigo-50 p-5 text-indigo-950"><p class="font-black">developer ux: python sdk</p><p class="mt-2 text-sm leading-6">plugin author decorator ile node yazar; sdk manifest üretir. elle devasa json yazmak zorunda kalmaz.</p></div>
+        <div class="rounded-2xl bg-amber-50 p-5 text-amber-950"><p class="font-black">xml: adapter only</p><p class="mt-2 text-sm leading-6">legacy/import/export veya belirli scientific metadata formatları için desteklenebilir; core spec olmamalı.</p></div>
+      </div>
+      <div class="mt-6 rounded-2xl bg-slate-950 p-5 text-slate-100"><pre class="codeblock font-mono text-xs">from synaptix import node, Input, Output
+
+@node(
+    id="eeg.mne.filter",
+    inputs={"raw": Input("mne.Raw")},
+    outputs={"filtered": Output("mne.Raw")},
+)
+def filter_raw(raw, l_freq: float, h_freq: float):
+    return raw.filter(l_freq, h_freq)</pre></div>
+    </section>
+
+    <section id="execution" class="paper-section mb-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-soft md:p-8 page-break">
+      <p class="text-sm font-black uppercase tracking-[.22em] text-indigo-600">bölüm 9</p>
+      <h2 class="mt-2 text-3xl font-black tracking-tight">runner ve execution sistemi</h2>
+      <p class="mt-4 max-w-4xl leading-7 text-slate-600">airflow core runner için uygun değil. airflow scheduled etl/dag dünyasına ait. bu ürünün runner’ı github actions runner gibi davranmalı: job claim eder, container başlatır, log/artifact/provenance toplar.</p>
+      <div class="mt-6 grid gap-4 lg:grid-cols-2">
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5"><h3 class="font-black">runner görevleri</h3><ul class="mt-3 space-y-2 text-sm leading-6 text-slate-600"><li>job claim + lease/heartbeat</li><li>input artifact staging</li><li>docker/containerd run</li><li>stdout/stderr streaming</li><li>timeout/cpu/memory/pid limit</li><li>output artifact upload</li><li>provenance + status event</li><li>retry/dead-letter policy</li></ul></div>
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5"><h3 class="font-black">state machine</h3><pre class="codeblock mt-3 font-mono text-xs text-slate-700">created
+queued
+claimed
+staging_inputs
+running
+checkpointing
+uploading_outputs
+completed
+
+failed
+cancelled
+timed_out
+lost</pre></div>
+      </div>
+      <h3 class="mt-8 text-xl font-black">tek workflow container mı, node başına container mı?</h3>
+      <div class="mt-4 overflow-hidden rounded-2xl border border-slate-200">
+        <table class="mini-table w-full text-sm">
+          <thead><tr><th>model</th><th>artı</th><th>eksi</th><th>karar</th></tr></thead>
+          <tbody>
+            <tr><td class="font-bold">tek workflow container</td><td>basit, hızlı başlar, notebook/native hissi verir, shared workspace kolay.</td><td>node-level isolation ve dependency ayrımı zayıf.</td><td>v0 default.</td></tr>
+            <tr><td class="font-bold">node başına container</td><td>iyi isolation, retry, dependency conflict azalır, provenance net.</td><td>overhead ve artifact transfer artar.</td><td>v1 selected nodes.</td></tr>
+            <tr><td class="font-bold">hybrid</td><td>aynı stack node’ları inprocess, riskli/gpu/custom node’lar containerized.</td><td>runtime planner gerekir.</td><td>nihai tasarım.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mt-6 rounded-2xl bg-slate-950 p-5 text-slate-100"><p class="mb-3 text-xs font-bold uppercase tracking-widest text-slate-400">docker security baseline</p><pre class="codeblock font-mono text-xs">docker run --rm \
+  --network none \
+  --memory 16g \
+  --cpus 4 \
+  --pids-limit 512 \
+  --read-only \
+  --cap-drop ALL \
+  --security-opt no-new-privileges \
+  -v /runs/run_84/inputs:/inputs:ro \
+  -v /runs/run_84/work:/work:rw \
+  -v /runs/run_84/outputs:/outputs:rw \
+  synaptix/eeg-core@sha256:abc</pre></div>
+      <p class="mt-5 rounded-2xl bg-red-50 p-4 text-sm leading-6 text-red-900"><strong>kritik güvenlik notu:</strong> docker socket api server’a verilmez. yalnızca ayrı runner host/daemon docker sdk veya containerd ile konuşur. container tenant’ın tüm dosya ağacını değil, sadece run-scoped inputs/work/outputs dizinlerini görür.</p>
+    </section>
+
+    <section id="storage" class="paper-section mb-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-soft md:p-8">
+      <p class="text-sm font-black uppercase tracking-[.22em] text-indigo-600">bölüm 10</p>
+      <h2 class="mt-2 text-3xl font-black tracking-tight">storage, ingest ve büyük data akışı</h2>
+      <p class="mt-4 max-w-4xl leading-7 text-slate-600">2 tb fmri gibi data için api server data stream etmemeli. upload doğrudan presigned multipart upload ile object storage’a gitmeli; control plane metadata ve finalize işlemini yönetmeli.</p>
+      <div class="mt-6 rounded-3xl bg-slate-950 p-5 text-slate-100"><pre class="codeblock font-mono text-sm">browser / cli
+   ↓ presigned multipart upload
+s3 / minio
+   ↓ upload finalized event
+ingest runner
+   ↓ bids validation + metadata extraction + checksums
+dataset snapshot manifest
+   ↓
+project dataset view</pre></div>
+      <div class="mt-6 overflow-hidden rounded-2xl border border-slate-200">
+        <table class="mini-table w-full text-sm">
+          <thead><tr><th>veri tipi</th><th>işleme stack’i</th><th>not</th></tr></thead>
+          <tbody>
+            <tr><td class="font-bold">tabular / csv / parquet</td><td>duckdb, parquet, arrow</td><td>yüksek performanslı query/transform için çok uygun.</td></tr>
+            <tr><td class="font-bold">eeg/meg</td><td>mne, mne-bids, pybids, numpy/scipy</td><td>core wedge.</td></tr>
+            <tr><td class="font-bold">fmri</td><td>nibabel, nilearn, fmriprep/bids app adapters</td><td>mvp dışı olabilir ama architecture hazır olmalı.</td></tr>
+            <tr><td class="font-bold">behavior/cv video</td><td>opencv, ffmpeg, pytorch, decord</td><td>genel cv değil, behavior video analysis olarak scope’lanmalı.</td></tr>
+            <tr><td class="font-bold">large arrays</td><td>zarr, chunked layouts</td><td>özellikle büyük derived data için değerlendirilmeli.</td></tr>
+            <tr><td class="font-bold">reports</td><td>html, markdown, notebook export</td><td>paper/grant workflow değerini görünür yapar.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mt-6 grid gap-4 lg:grid-cols-3">
+        <div class="rounded-2xl bg-slate-50 p-5"><h3 class="font-black">source of truth</h3><p class="mt-2 text-sm leading-6 text-slate-600">object storage. runner local cache yalnızca working copy.</p></div>
+        <div class="rounded-2xl bg-slate-50 p-5"><h3 class="font-black">cache</h3><p class="mt-2 text-sm leading-6 text-slate-600">sha256 keyed local nvme cache, lru cleanup, checksum verification.</p></div>
+        <div class="rounded-2xl bg-slate-50 p-5"><h3 class="font-black">encryption</h3><p class="mt-2 text-sm leading-6 text-slate-600">tls, at-rest encryption, kms/customer-managed keys for enterprise, short-lived signed urls.</p></div>
+      </div>
+    </section>
+
+    <section id="security" class="paper-section mb-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-soft md:p-8 page-break">
+      <p class="text-sm font-black uppercase tracking-[.22em] text-indigo-600">bölüm 11</p>
+      <h2 class="mt-2 text-3xl font-black tracking-tight">security, compliance ve deployment</h2>
+      <p class="mt-4 max-w-4xl leading-7 text-slate-600">başlangıç public/open research gibi görünse bile ürün ileride kişisel/clinical-adjacent veri tutacakmış gibi tasarlanmalı: identity separation, workspace boundaries, encryption, audit, data minimization ve pseudonymisation support.</p>
+      <div class="mt-6 overflow-hidden rounded-2xl border border-slate-200">
+        <table class="mini-table w-full text-sm">
+          <thead><tr><th>katman</th><th>karar</th></tr></thead>
+          <tbody>
+            <tr><td class="font-bold">authn</td><td>mvp’de managed auth veya keycloak/zitadel gibi oidc/saml uyumlu idp. enterprise için saml/oidc/scim roadmap.</td></tr>
+            <tr><td class="font-bold">authz</td><td>organization → workspace → project → dataset/workflow/run. coarse rbac first, resource grants later.</td></tr>
+            <tr><td class="font-bold">rbac</td><td>owner, admin, workspace manager, contributor/researcher, runner, reviewer, viewer, billing admin.</td></tr>
+            <tr><td class="font-bold">data permissions</td><td>can_view_metadata, can_download_raw, can_run_workflow, can_view_outputs, can_publish, can_manage_access.</td></tr>
+            <tr><td class="font-bold">audit</td><td>append-only audit events for membership, access, run, publish, export, plugin install, secret usage.</td></tr>
+            <tr><td class="font-bold">plugin security</td><td>container scan, malware scan, license scan, signed images/manifests, review status.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3 class="mt-8 text-xl font-black">deployment modes</h3>
+      <div class="mt-4 grid gap-4 lg:grid-cols-3">
+        <div class="rounded-2xl border border-slate-200 p-5"><h3 class="font-black">local individual</h3><p class="mt-2 text-sm leading-6 text-slate-600">desktop/local docker compose; kişisel kullanım, public workflows, code export.</p></div>
+        <div class="rounded-2xl border border-slate-200 p-5"><h3 class="font-black">lab self-hosted</h3><p class="mt-2 text-sm leading-6 text-slate-600">lab server + minio + postgres + runner. private data içeride kalır.</p></div>
+        <div class="rounded-2xl border border-slate-200 p-5"><h3 class="font-black">managed cloud / hybrid</h3><p class="mt-2 text-sm leading-6 text-slate-600">hosted control plane, optional hosted execution veya local/vpc-bound runners.</p></div>
+      </div>
+      <p class="mt-5 rounded-2xl bg-indigo-50 p-4 text-sm leading-6 text-indigo-900"><strong>principle:</strong> trust and data gravity matter. local-first başla; hosted execution paid upgrade ve enterprise path olsun.</p>
+    </section>
+
+    <section id="dbapi" class="paper-section mb-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-soft md:p-8">
+      <p class="text-sm font-black uppercase tracking-[.22em] text-indigo-600">bölüm 12</p>
+      <h2 class="mt-2 text-3xl font-black tracking-tight">data model, api ve frontend deneyimi</h2>
+      <div class="mt-6 grid gap-6 lg:grid-cols-2">
+        <div class="rounded-2xl bg-slate-950 p-5 text-slate-100"><p class="mb-3 text-xs font-bold uppercase tracking-widest text-slate-400">postgres tables</p><pre class="codeblock font-mono text-xs">users
+organizations
+organization_memberships
+workspaces
+workspace_memberships
+projects
+
+datasets
+dataset_snapshots
+dataset_objects
+artifacts
+
+workflows
+workflow_drafts
+workflow_versions
+workflow_version_nodes
+workflow_version_edges
+
+plugins
+plugin_versions
+plugin_nodes
+plugin_installs
+marketplace_listings
+entitlements
+
+runs
+run_nodes
+run_events
+run_logs
+run_artifacts
+
+provenance_nodes
+provenance_edges
+audit_events
+api_tokens
+secrets
+billing_accounts
+usage_events</pre></div>
+        <div class="rounded-2xl bg-slate-950 p-5 text-slate-100"><p class="mb-3 text-xs font-bold uppercase tracking-widest text-slate-400">rest api surface</p><pre class="codeblock font-mono text-xs">post /orgs
+post /workspaces
+post /projects
+
+post /datasets
+post /datasets/{id}/upload-session
+post /datasets/{id}/snapshots
+
+post /workflows
+put /workflows/{id}/draft
+post /workflows/{id}/versions
+post /workflow-versions/{id}/runs
+
+get /runs/{id}
+get /runs/{id}/events
+get /runs/{id}/logs
+post /runs/{id}/cancel
+
+get /marketplace/plugins
+post /workspaces/{id}/plugins/install
+get /artifacts/{id}/download-url</pre></div>
+      </div>
+      <h3 class="mt-8 text-xl font-black">frontend layout</h3>
+      <div class="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div class="rounded-2xl bg-slate-50 p-5"><p class="font-black">left sidebar</p><p class="mt-2 text-sm leading-6 text-slate-600">datasets, node library, templates, marketplace.</p></div>
+        <div class="rounded-2xl bg-slate-50 p-5"><p class="font-black">center canvas</p><p class="mt-2 text-sm leading-6 text-slate-600">react flow graph editor, custom nodes, status overlays.</p></div>
+        <div class="rounded-2xl bg-slate-50 p-5"><p class="font-black">right panel</p><p class="mt-2 text-sm leading-6 text-slate-600">node params, schema validation, resource estimates, version info.</p></div>
+        <div class="rounded-2xl bg-slate-50 p-5"><p class="font-black">bottom panel</p><p class="mt-2 text-sm leading-6 text-slate-600">logs, events, artifacts, reports, warnings.</p></div>
+      </div>
+      <p class="mt-5 text-sm leading-6 text-slate-600">collaboration modeli: draft graph mutable ve yjs ile collaborative; workflow_version immutable. run draft’tan başlatılırsa sistem otomatik ephemeral version yaratır ki her run reproducible kalsın.</p>
+    </section>
+
+    <section id="techcompare" class="paper-section mb-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-soft md:p-8 page-break">
+      <p class="text-sm font-black uppercase tracking-[.22em] text-indigo-600">bölüm 13</p>
+      <h2 class="mt-2 text-3xl font-black tracking-tight">teknoloji karşılaştırması ve nihai seçim</h2>
+      <div class="mt-6 overflow-hidden rounded-2xl border border-slate-200">
+        <table class="mini-table w-full text-sm">
+          <thead><tr><th>teknoloji</th><th>artı</th><th>eksi</th><th>karar</th></tr></thead>
+          <tbody>
+            <tr><td class="font-bold">argo workflows</td><td>k8s-native, container-first, batch/gpu jobs, hosted execution için güçlü.</td><td>kubernetes competence ve ops yükü ister.</td><td>roadmap backend; hosted v2/v3.</td></tr>
+            <tr><td class="font-bold">nextflow</td><td>scientific pipeline portability, cloud/hpc uyumu.</td><td>app-centric visual product primary engine için zayıf.</td><td>interop/hpc bridge.</td></tr>
+            <tr><td class="font-bold">airflow</td><td>battle-tested, geniş ops ekosistemi.</td><td>etl/scheduled batch centric; interactive scientific execution için ağır.</td><td>core runner değil; internal etl olabilir.</td></tr>
+            <tr><td class="font-bold">prefect</td><td>pythonic, düşük friction.</td><td>multi-tenant container platform execution için argo kadar doğal değil.</td><td>alternatif ama seçilmedi.</td></tr>
+            <tr><td class="font-bold">dagster</td><td>asset/lineage semantics güçlü.</td><td>scientific compute platform yerine data asset tarafına daha yakın.</td><td>lineage fikirleri alınabilir.</td></tr>
+            <tr><td class="font-bold">nats jetstream</td><td>job/event messaging, ack, retry, queue groups, go uyumu, düşük ops.</td><td>kafka/redpanda kadar uzun süreli high-throughput event analytics değil.</td><td>mvp queue/event bus.</td></tr>
+            <tr><td class="font-bold">redpanda/kafka</td><td>yüksek throughput, long retention, replay, event streaming analytics.</td><td>mvp için operasyonel ağırlık.</td><td>later if event analytics/core event sourcing grows.</td></tr>
+            <tr><td class="font-bold">postgres</td><td>relational core, jsonb, full-text search, transactional integrity.</td><td>çok büyük faceted/search catalog için dedicated search kadar iyi değil.</td><td>mvp source of truth.</td></tr>
+            <tr><td class="font-bold">opensearch</td><td>faceted/full-text/vector search.</td><td>extra infra ve indexing complexity.</td><td>only when search demands it.</td></tr>
+            <tr><td class="font-bold">s3/minio</td><td>large immutable blobs, artifact storage, cloud/self-host parity.</td><td>egress ve request cost dikkat ister.</td><td>data source of truth.</td></tr>
+            <tr><td class="font-bold">docker sdk</td><td>k8s’siz hızlı runner, local-first, basit mental model.</td><td>docker socket güvenlik riski; multi-host scheduling sınırlı.</td><td>mvp runner backend.</td></tr>
+            <tr><td class="font-bold">containerd/gvisor</td><td>runtime portability + stronger sandboxing.</td><td>operasyon ve performance trade-off.</td><td>containerd v1/v2, gvisor for untrusted hosted code.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="roadmap" class="paper-section mb-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-soft md:p-8 page-break">
+      <p class="text-sm font-black uppercase tracking-[.22em] text-indigo-600">bölüm 14</p>
+      <h2 class="mt-2 text-3xl font-black tracking-tight">mvp, gtm ve 18 aylık yol haritası</h2>
+      <div class="mt-6 grid gap-4 lg:grid-cols-3">
+        <div class="rounded-2xl border border-emerald-100 bg-emerald-50 p-5"><h3 class="font-black text-emerald-950">must-have mvp</h3><ul class="mt-3 space-y-2 text-sm leading-6 text-emerald-950/80"><li>org/workspace/project model</li><li>workflow graph editor</li><li>json workflow spec</li><li>eeg-core plugin pack</li><li>bids ingest + validation</li><li>snapshot versioning</li><li>docker local runner</li><li>run history + reports</li><li>basic provenance</li><li>python code export</li></ul></div>
+        <div class="rounded-2xl border border-indigo-100 bg-indigo-50 p-5"><h3 class="font-black text-indigo-950">should-have</h3><ul class="mt-3 space-y-2 text-sm leading-6 text-indigo-950/80"><li>marketplace alpha</li><li>plugin entitlement</li><li>custom local nodes</li><li>collaborative drafts</li><li>artifact cache</li><li>cli uploader</li><li>openneuro/dandi pull</li><li>private workspace beta</li></ul></div>
+        <div class="rounded-2xl border border-red-100 bg-red-50 p-5"><h3 class="font-black text-red-950">not yet</h3><ul class="mt-3 space-y-2 text-sm leading-6 text-red-950/80"><li>full k8s as requirement</li><li>full argo in mvp</li><li>public untrusted code marketplace</li><li>enterprise scim day one</li><li>general cv platform</li><li>realtime notebook service</li><li>graph db</li><li>opensearch unless needed</li></ul></div>
+      </div>
+      <h3 class="mt-8 text-xl font-black">gtm funnel</h3>
+      <div class="mt-4 rounded-3xl bg-slate-950 p-5 text-slate-100"><pre class="codeblock font-mono text-sm">github açık kaynak çekirdek
+  ↓
+docs + örnek workflow'lar + tutorials
+  ↓
+community kullanım + inbound
+  ↓
+founder-led lab outreach
+  ↓
+4–8 haftalık pilot
+  ↓
+ücretli private workspace
+  ↓
+annual renewal + support upsell
+  ↓
+startup/center/enterprise expansion</pre></div>
+      <h3 class="mt-8 text-xl font-black">pilot başarı metrikleri</h3>
+      <div class="mt-4 grid gap-4 md:grid-cols-3">
+        <div class="rounded-2xl bg-slate-50 p-5"><p class="font-black">time-to-rerun</p><p class="mt-2 text-sm leading-6 text-slate-600">aynı pipeline’ın ikinci kez koşturulma süresi.</p></div>
+        <div class="rounded-2xl bg-slate-50 p-5"><p class="font-black">onboarding time</p><p class="mt-2 text-sm leading-6 text-slate-600">yeni lab üyesinin workflow’u anlaması için geçen süre.</p></div>
+        <div class="rounded-2xl bg-slate-50 p-5"><p class="font-black">methods package quality</p><p class="mt-2 text-sm leading-6 text-slate-600">paper/grant için provenance + report kalitesi.</p></div>
+      </div>
+    </section>
+
+    <section id="risks" class="paper-section mb-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-soft md:p-8">
+      <p class="text-sm font-black uppercase tracking-[.22em] text-indigo-600">bölüm 15</p>
+      <h2 class="mt-2 text-3xl font-black tracking-tight">risk matrisi</h2>
+      <div class="mt-6 overflow-hidden rounded-2xl border border-slate-200">
+        <table class="mini-table w-full text-sm">
+          <thead><tr><th>risk</th><th>neden önemli</th><th>önlem</th></tr></thead>
+          <tbody>
+            <tr><td class="font-bold">toolbox’larla karışma</td><td>kullanıcı “mne zaten var” diyebilir.</td><td>messaging: not another toolkit; workflow + reproducibility + lab memory.</td></tr>
+            <tr><td class="font-bold">hosted compute cogs</td><td>çok erken managed compute marjı bozar.</td><td>local-first; hosted compute optional + usage-based.</td></tr>
+            <tr><td class="font-bold">procurement drag</td><td>akademide yüksek kontrat yavaşlar.</td><td>$249–$399 lab entry plan; enterprise motion ayrı.</td></tr>
+            <tr><td class="font-bold">domain genişleme dağılması</td><td>eeg-first avantajı kaybolur.</td><td>ilk 12 ay eeg/meg; cv yalnız behavior-video olarak sınırlı.</td></tr>
+            <tr><td class="font-bold">untrusted code security</td><td>custom scripts tehlikeli olabilir.</td><td>trusted nodes first; custom code sandbox later; signed plugins; no network default.</td></tr>
+            <tr><td class="font-bold">git versioning karmaşası</td><td>raw data git semantics ürünü bozar.</td><td>manifest snapshot + provenance; git sadece code/plugin/export.</td></tr>
+            <tr><td class="font-bold">egress/storage cost</td><td>büyük data çok hızlı maliyet yaratır.</td><td>local cache, signed urls, egress visibility, object storage source of truth.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+
+
+    <section id="procurement" class="paper-section mb-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-soft md:p-8 page-break">
+      <p class="text-sm font-black uppercase tracking-[.22em] text-indigo-600">ek bölüm</p>
+      <h2 class="mt-2 text-3xl font-black tracking-tight">procurement, grant ve bütçe mantığı</h2>
+      <p class="mt-4 max-w-4xl leading-7 text-slate-600">akademik satışta ürünün teknik değeri kadar yıllık kontrat büyüklüğü de belirleyici. düşük tutarlı lab planı, pi veya departmental software spend ile daha hızlı alınabilir; yüksek tutarlar çoklu teklif, hukuk, it ve security review’a döner.</p>
+      <div class="mt-6 overflow-hidden rounded-2xl border border-slate-200">
+        <table class="mini-table w-full text-sm">
+          <thead><tr><th>satın alma yolu</th><th>kim için</th><th>tipik sürtünme</th><th>ürün stratejisi</th></tr></thead>
+          <tbody>
+            <tr><td class="font-bold">low-friction lab purchase</td><td>tek pi, küçük lab, 3–10 aktif kullanıcı</td><td>kart/po, düşük teklif sayısı, kısa karar</td><td>$249–$399/lab/ay public entry plan.</td></tr>
+            <tr><td class="font-bold">mid-touch lab plus</td><td>research engineer olan yoğun eeg/meg grubu</td><td>pilot, teknik değerlendirme, support beklentisi</td><td>$499–$899/lab/ay + onboarding.</td></tr>
+            <tr><td class="font-bold">startup/team</td><td>neurotech startup, özel veri/benchmark ekipleri</td><td>security ve api ihtiyaçları ama akademiden hızlı karar</td><td>$12k–$25k/yıl + support hours.</td></tr>
+            <tr><td class="font-bold">core/enterprise</td><td>center, clinical research group, konsorsiyum</td><td>sso, dpa/baa, security review, procurement</td><td>$25k–$100k+/yıl, sales-led.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3 class="mt-8 text-xl font-black">grant ve bütçelenebilirlik</h3>
+      <div class="mt-4 grid gap-4 lg:grid-cols-4">
+        <div class="rounded-2xl bg-slate-50 p-5"><p class="font-black">nih dms</p><p class="mt-2 text-sm leading-6 text-slate-600">metadata, accepted standards, de-identification, repository deposition ve local data management maliyetleri ürünün değer hikayesini güçlendirir.</p></div>
+        <div class="rounded-2xl bg-slate-50 p-5"><p class="font-black">nih brain</p><p class="mt-2 text-sm leading-6 text-slate-600">toolmakers, labs ve team-based efforts için ödeme kapasitesi olan fon ortamı.</p></div>
+        <div class="rounded-2xl bg-slate-50 p-5"><p class="font-black">erc / horizon</p><p class="mt-2 text-sm leading-6 text-slate-600">open science ve dmp yükümlülükleri; trusted repository ve veri yönetimi beklentisi.</p></div>
+        <div class="rounded-2xl bg-slate-50 p-5"><p class="font-black">core facility</p><p class="mt-2 text-sm leading-6 text-slate-600">standard service workflow, audit/reporting ve recharge mantığı için ayrı ürün hattı.</p></div>
+      </div>
+    </section>
+
+    <section id="gtm-details" class="paper-section mb-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-soft md:p-8">
+      <p class="text-sm font-black uppercase tracking-[.22em] text-indigo-600">ek bölüm</p>
+      <h2 class="mt-2 text-3xl font-black tracking-tight">gtm senaryoları, pilot playbook ve outreach</h2>
+      <div class="mt-6 overflow-hidden rounded-2xl border border-slate-200">
+        <table class="mini-table w-full text-sm">
+          <thead><tr><th>senaryo</th><th>süre</th><th>ana hareket</th><th>kpi</th><th>arr beklentisi</th></tr></thead>
+          <tbody>
+            <tr><td class="font-bold">low-touch community-led</td><td>0–6 ay</td><td>open-source core, templates, docs, workshops, conference demos.</td><td>github stars, active templates, docs-to-signup, inbound pilot.</td><td>$25k–$100k ilk yıl mümkün ama tek başına yavaş.</td></tr>
+            <tr><td class="font-bold">mid-touch lab sales</td><td>3–12 ay</td><td>founder-led outreach, 4–8 haftalık pilot, weekly office hours, migration support.</td><td>pilot start rate, pilot-to-paid, 90-day retention, references.</td><td>10–20 paid lab ile $50k–$240k arr.</td></tr>
+            <tr><td class="font-bold">high-touch enterprise</td><td>6–18 ay</td><td>center/startup target list, security packet, dpa/baa, private deployment.</td><td>security review pass, sales cycle length, annual conversion, expansion.</td><td>az sayıda müşteriyle $25k–$100k+ acv.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3 class="mt-8 text-xl font-black">pilot playbook</h3>
+      <div class="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div class="rounded-2xl bg-slate-50 p-5"><p class="font-black">1. lab seçimi</p><p class="mt-2 text-sm leading-6 text-slate-600">eeg/meg kullanan, python/matlab karışık pipeline’ı olan, publication veya grant baskısı yaşayan lab.</p></div>
+        <div class="rounded-2xl bg-slate-50 p-5"><p class="font-black">2. discovery call</p><p class="mt-2 text-sm leading-6 text-slate-600">veri tipi, mevcut araçlar, kırılan adımlar, paylaşım ve rapor ihtiyacı anlaşılır.</p></div>
+        <div class="rounded-2xl bg-slate-50 p-5"><p class="font-black">3. pilot scope</p><p class="mt-2 text-sm leading-6 text-slate-600">tek paper pipeline’ı veya tek benchmark use case’i seçilir.</p></div>
+        <div class="rounded-2xl bg-slate-50 p-5"><p class="font-black">4. success criteria</p><p class="mt-2 text-sm leading-6 text-slate-600">time-to-rerun, onboarding time, methods/provenance package quality.</p></div>
+        <div class="rounded-2xl bg-slate-50 p-5"><p class="font-black">5. weekly review</p><p class="mt-2 text-sm leading-6 text-slate-600">friction, node eksikleri, support ihtiyacı ve product backlog toplanır.</p></div>
+        <div class="rounded-2xl bg-slate-50 p-5"><p class="font-black">6. conversion</p><p class="mt-2 text-sm leading-6 text-slate-600">pilot sonunda annual lab planı + onboarding/support teklifi sunulur.</p></div>
+      </div>
+      <div class="mt-6 rounded-2xl bg-slate-950 p-5 text-slate-100"><p class="mb-3 text-xs font-bold uppercase tracking-widest text-slate-400">outreach email template</p><pre class="codeblock font-mono text-xs">konu: eeg/meg pipeline’ınızı bids-native ve tekrar üretilebilir hale getirmek için kısa bir pilot
+
+merhaba [isim],
+
+[lab adı]’nın [paper/proje/dataset] tarafında eeg/meg çalıştığını gördüm. synaptix tarafında, dağınık notebook ve script akışlarını bids-uyumlu, tekrar koşturulabilir ve ekip içinde paylaşılabilir workflow’lara çeviren bir araç geliştiriyoruz.
+
+özellikle üç yerde fayda sağlıyoruz:
+- aynı analizi yeni öğrenci/postdoc geldiğinde yeniden kurma süresini azaltmak
+- preprocessing + feature extraction + evaluation adımlarını versiyonlu hale getirmek
+- paper/grant için provenance ve report çıktısı üretmek
+
+20 dakikalık bir görüşmede mevcut pipeline’ınızı haritalayıp, tek bir gerçek use case üzerinde 4–6 haftalık küçük bir pilot önerebiliriz.
+
+selamlar,
+[isim]</pre></div>
+    </section>
+
+    <section id="costs-k8s" class="paper-section mb-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-soft md:p-8 page-break">
+      <p class="text-sm font-black uppercase tracking-[.22em] text-indigo-600">ek bölüm</p>
+      <h2 class="mt-2 text-3xl font-black tracking-tight">maliyet ekonomisi ve k8s’in gerçekten ne zaman lazım olduğu</h2>
+      <p class="mt-4 max-w-4xl leading-7 text-slate-600">kubernetes’in değeri “containerları birbirinden izole etmek”ten ibaret değil. mvp’de docker runner yeterli olabilir; k8s çoklu host scheduling, gpu pool, network policy, autoscaling, secrets, self-healing ve operational consistency için gerekir.</p>
+      <div class="mt-6 grid gap-4 lg:grid-cols-2">
+        <div class="rounded-2xl border border-slate-200 p-5"><h3 class="font-black">mvp: k8s’siz</h3><p class="mt-2 text-sm leading-6 text-slate-600">single-host veya small runner pool, docker sdk, nats, postgres, minio/s3. ilk risk scale değil; product-market ve workflow value.</p></div>
+        <div class="rounded-2xl border border-slate-200 p-5"><h3 class="font-black">v2/v3: k8s/argo</h3><p class="mt-2 text-sm leading-6 text-slate-600">multi-tenant hosted execution, gpu scheduling, autoscaling, resource quotas, stronger network/security boundaries.</p></div>
+      </div>
+      <h3 class="mt-8 text-xl font-black">execution backend abstraction</h3>
+      <div class="mt-4 rounded-2xl bg-slate-950 p-5 text-slate-100"><pre class="codeblock font-mono text-xs">type ExecutionBackend interface {
+    StartRun(ctx context.Context, spec RunSpec) (RunHandle, error)
+    CancelRun(ctx context.Context, runID string) error
+    GetStatus(ctx context.Context, runID string) (RunStatus, error)
+    StreamLogs(ctx context.Context, runID string) (&lt;-chan LogLine, error)
+}
+
+// v0: docker backend
+// v1: containerd backend
+// v2: argo/kubernetes backend
+// v3: aws batch / hpc / nextflow backend</pre></div>
+      <h3 class="mt-8 text-xl font-black">cost guardrails</h3>
+      <div class="mt-4 grid gap-4 md:grid-cols-3">
+        <div class="rounded-2xl bg-slate-50 p-5"><p class="font-black">storage</p><p class="mt-2 text-sm leading-6 text-slate-600">object storage ucuz görünür ama request/egress ve duplicate derived artifacts maliyeti büyütür.</p></div>
+        <div class="rounded-2xl bg-slate-50 p-5"><p class="font-black">compute</p><p class="mt-2 text-sm leading-6 text-slate-600">control plane persistent; scientific workers ephemeral olmalı. gpu always-on yalnız yüksek utilization varsa.</p></div>
+        <div class="rounded-2xl bg-slate-50 p-5"><p class="font-black">search/logs</p><p class="mt-2 text-sm leading-6 text-slate-600">opensearch ve high-retention logs erken maliyet yaratır; postgres search ile başla.</p></div>
+      </div>
+    </section>
+
+    <section id="provenance" class="paper-section mb-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-soft md:p-8">
+      <p class="text-sm font-black uppercase tracking-[.22em] text-indigo-600">ek bölüm</p>
+      <h2 class="mt-2 text-3xl font-black tracking-tight">provenance graph ve scientific memory</h2>
+      <p class="mt-4 max-w-4xl leading-7 text-slate-600">teknik moat’in en güçlü yeri execution engine değil, scientific provenance graph. workflow engine değişebilir; fakat “bu figür nasıl üretildi?” sorusuna güvenilir cevap veren graph daha zor kopyalanır.</p>
+      <div class="mt-6 rounded-3xl bg-slate-950 p-5 text-slate-100"><pre class="codeblock font-mono text-sm">dataset_snapshot:v3 ──used_by──▶ run:84
+workflow_version:v12 ──executed_as──▶ run:84
+plugin_version:eeg-core@1.2.0 ──used_in──▶ run_node:filter_1
+run_node:filter_1 ──produced──▶ artifact:filtered_raw.fif
+artifact:features.parquet ──included_in──▶ report:methods.html
+user:tunahan ──triggered──▶ run:84</pre></div>
+      <div class="mt-6 overflow-hidden rounded-2xl border border-slate-200">
+        <table class="mini-table w-full text-sm">
+          <thead><tr><th>soru</th><th>platform cevabı</th></tr></thead>
+          <tbody>
+            <tr><td class="font-bold">bu figür nereden geldi?</td><td>report figure → artifact → node → workflow version → dataset snapshot → raw files + checksums.</td></tr>
+            <tr><td class="font-bold">hangi parametreler kullanıldı?</td><td>run_node params + plugin version + runtime image digest.</td></tr>
+            <tr><td class="font-bold">aynı sonucu tekrar üretebilir miyiz?</td><td>locked dependencies, immutable data manifest ve environment digest ile mümkün.</td></tr>
+            <tr><td class="font-bold">kim çalıştırdı ve kim gördü?</td><td>user-triggered run, artifact access logs ve append-only audit events.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="engineering" class="paper-section mb-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-soft md:p-8 page-break">
+      <p class="text-sm font-black uppercase tracking-[.22em] text-indigo-600">ek bölüm</p>
+      <h2 class="mt-2 text-3xl font-black tracking-tight">engineering organization, testing ve integrations</h2>
+      <p class="mt-4 max-w-4xl leading-7 text-slate-600">ilk fazda monorepo daha iyi. ui node definitions, backend schema, workflow spec, sdk, docs ve example pipelines birlikte değişecek. erken çok repo release friction yaratır.</p>
+      <div class="mt-6 grid gap-4 lg:grid-cols-3">
+        <div class="rounded-2xl bg-slate-50 p-5"><h3 class="font-black">monorepo packages</h3><p class="mt-2 text-sm leading-6 text-slate-600">frontend, api, runner, worker-images, python-sdk, schema, examples, docs.</p></div>
+        <div class="rounded-2xl bg-slate-50 p-5"><h3 class="font-black">testing</h3><p class="mt-2 text-sm leading-6 text-slate-600">golden bids/nwb fixtures, workflow snapshot tests, permission matrix tests, e2e runs on sample public datasets.</p></div>
+        <div class="rounded-2xl bg-slate-50 p-5"><h3 class="font-black">contributor model</h3><p class="mt-2 text-sm leading-6 text-slate-600">plugin interfaces, reader adapters, node templates, execution backend docs, docs-as-code.</p></div>
+      </div>
+      <h3 class="mt-8 text-xl font-black">integration priority</h3>
+      <div class="mt-4 overflow-hidden rounded-2xl border border-slate-200">
+        <table class="mini-table w-full text-sm">
+          <thead><tr><th>öncelik</th><th>entegrasyon</th><th>neden</th></tr></thead>
+          <tbody>
+            <tr><td class="font-bold">1</td><td>openneuro</td><td>bids-centered public dataset import ve template demosu için en doğal kaynak.</td></tr>
+            <tr><td class="font-bold">2</td><td>dandi</td><td>nwb handoff, neurophysiology archive ve private-to-public workflow için güçlü.</td></tr>
+            <tr><td class="font-bold">3</td><td>mne/eeglab/brainstorm adapters</td><td>existing lab habits’i kırmadan adoption.</td></tr>
+            <tr><td class="font-bold">4</td><td>pennsieve/flywheel-like export/import</td><td>enterprise scientific data management ekosistemiyle köprü.</td></tr>
+            <tr><td class="font-bold">5</td><td>hpc/nextflow</td><td>kurumsal/hpc pipeline interop için roadmap.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="investor" class="paper-section mb-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-soft md:p-8">
+      <p class="text-sm font-black uppercase tracking-[.22em] text-indigo-600">ek bölüm</p>
+      <h2 class="mt-2 text-3xl font-black tracking-tight">yatırımcıya dönük tek sayfalık positioning</h2>
+      <div class="mt-6 grid gap-4 lg:grid-cols-2">
+        <div class="rounded-2xl border border-slate-200 p-5"><p class="text-xs font-black uppercase text-slate-500">problem</p><p class="mt-2 leading-7 text-slate-700">eeg/meg ve daha geniş nörobilim iş akışları hâlâ notebook, matlab script, python utility ve kişisel klasörler arasında dağınık. publication, handoff, grant compliance ve multi-site collaboration yavaşlıyor.</p></div>
+        <div class="rounded-2xl border border-slate-200 p-5"><p class="text-xs font-black uppercase text-slate-500">neden şimdi</p><p class="mt-2 leading-7 text-slate-700">bids standartı olgunlaştı; openneuro/dandi/nemar veri arzını büyüttü; nih dms ve horizon/erc açık bilim yükümlülükleri workflow governance ihtiyacını artırdı.</p></div>
+        <div class="rounded-2xl border border-slate-200 p-5"><p class="text-xs font-black uppercase text-slate-500">ürün</p><p class="mt-2 leading-7 text-slate-700">eeg-first başlayan; bids-native veri yönetimi, reusable workflow’lar, private workspaces, provenance, code export ve report generation sağlayan platform.</p></div>
+        <div class="rounded-2xl border border-slate-200 p-5"><p class="text-xs font-black uppercase text-slate-500">neden kazanırız</p><p class="mt-2 leading-7 text-slate-700">arşivler public data sağlar; kütüphaneler analiz gücü verir; ama private lab collaboration, organizational memory ve execution-ready reproducibility katmanı boş.</p></div>
+        <div class="rounded-2xl border border-slate-200 p-5"><p class="text-xs font-black uppercase text-slate-500">iş modeli</p><p class="mt-2 leading-7 text-slate-700">open-source core + paid private lab workspace + marketplace/domain packs + onboarding/support + startup/team + enterprise/private deployment + optional compute/storage.</p></div>
+        <div class="rounded-2xl border border-slate-200 p-5"><p class="text-xs font-black uppercase text-slate-500">gtm</p><p class="mt-2 leading-7 text-slate-700">community-led adoption ile başla, founder-led pilotlara çevir, sonra center/startup/enterprise motion aç.</p></div>
+      </div>
+    </section>
+
+    <section id="open-questions" class="paper-section mb-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-soft md:p-8">
+      <p class="text-sm font-black uppercase tracking-[.22em] text-indigo-600">ek bölüm</p>
+      <h2 class="mt-2 text-3xl font-black tracking-tight">açık sorular ve bilinçli scope kesintileri</h2>
+      <div class="mt-6 overflow-hidden rounded-2xl border border-slate-200">
+        <table class="mini-table w-full text-sm">
+          <thead><tr><th>soru</th><th>şimdiki cevap</th><th>ne zaman tekrar bakılır</th></tr></thead>
+          <tbody>
+            <tr><td class="font-bold">visual editor mı code-defined pipelines mı?</td><td>ikisi: visual-first ama python escape hatch/code export.</td><td>pilot feedback ve advanced user davranışı sonrası.</td></tr>
+            <tr><td class="font-bold">arbitrary hosted code ne zaman?</td><td>day one değil. trusted/prebuilt nodes first.</td><td>paid hosted compute ve third-party marketplace açılmadan önce.</td></tr>
+            <tr><td class="font-bold">k8s mvp’de şart mı?</td><td>hayır. docker runner first, argo backend later.</td><td>multi-host/gpu/enterprise scheduling ihtiyacı netleşince.</td></tr>
+            <tr><td class="font-bold">graph db gerekir mi?</td><td>hayır. postgres edge tables yeter.</td><td>complex provenance queries ürünün core usage’ı olursa.</td></tr>
+            <tr><td class="font-bold">opensearch gerekir mi?</td><td>hayır. postgres full-text/jsonb ile başla.</td><td>large metadata catalogue ve faceted search product differentiator olursa.</td></tr>
+            <tr><td class="font-bold">full hipaa hosting?</td><td>erken söz verilmez.</td><td>operational controls, support, contracting ve security packet hazır olunca.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="appendix" class="paper-section mb-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-soft md:p-8 page-break">
+      <p class="text-sm font-black uppercase tracking-[.22em] text-indigo-600">appendix</p>
+      <h2 class="mt-2 text-3xl font-black tracking-tight">son karar log’u ve sunumda kullanılacak özet</h2>
+      <div class="mt-6 grid gap-4 lg:grid-cols-2">
+        <div class="rounded-2xl bg-slate-950 p-5 text-slate-100"><p class="mb-3 text-xs font-bold uppercase tracking-widest text-slate-400">türkçe pitch</p><pre class="codeblock font-mono text-sm">synaptix, datasetleri, workflow graph’larını ve execution run’larını immutable snapshot olarak versiyonlayan; go control plane ile izinleri, marketplace entitlement’larını ve run state’i yöneten; python container’larıyla domain plugin’lerini güvenli şekilde çalıştırıp artifact, report ve provenance üreten low-code bilimsel workflow repository platformudur.</pre></div>
+        <div class="rounded-2xl bg-slate-950 p-5 text-slate-100"><p class="mb-3 text-xs font-bold uppercase tracking-widest text-slate-400">english pitch</p><pre class="codeblock font-mono text-sm">synaptix is a low-code scientific workflow repository where datasets, workflow graphs and executions are versioned as immutable snapshots; a go control plane coordinates permissions, marketplace entitlements and run state, while isolated python containers execute domain plugins against s3-backed data and produce reproducible artifacts, reports and provenance.</pre></div>
+      </div>
+      <h3 class="mt-8 text-xl font-black">nihai mimari kararlar</h3>
+      <div class="mt-4 grid gap-3 md:grid-cols-2">
+        <div class="rounded-2xl border border-slate-200 p-4"><strong>1.</strong> git-like product versioning, not raw git wrapping.</div>
+        <div class="rounded-2xl border border-slate-200 p-4"><strong>2.</strong> object storage for data, postgres for metadata/manifests/state.</div>
+        <div class="rounded-2xl border border-slate-200 p-4"><strong>3.</strong> json schema plugin contracts, python sdk for authors.</div>
+        <div class="rounded-2xl border border-slate-200 p-4"><strong>4.</strong> go control plane, python execution containers.</div>
+        <div class="rounded-2xl border border-slate-200 p-4"><strong>5.</strong> nats jetstream for job/event flow, postgres as source of truth.</div>
+        <div class="rounded-2xl border border-slate-200 p-4"><strong>6.</strong> docker runner first, k8s/argo backend later.</div>
+        <div class="rounded-2xl border border-slate-200 p-4"><strong>7.</strong> workflow draft mutable, workflow version immutable.</div>
+        <div class="rounded-2xl border border-slate-200 p-4"><strong>8.</strong> every run creates provenance, artifacts and report links.</div>
+        <div class="rounded-2xl border border-slate-200 p-4"><strong>9.</strong> marketplace uses entitlements and signed plugin packages.</div>
+        <div class="rounded-2xl border border-slate-200 p-4"><strong>10.</strong> local-first trust, hosted execution later as paid upgrade.</div>
+      </div>
+      <h3 class="mt-8 text-xl font-black">source coverage</h3>
+      <p class="mt-3 leading-7 text-slate-600">bu dosya, iki deep research raporundaki business due diligence, pazar sinyalleri, fiyatlama, rekabet, gtm, teknik stack, güvenlik, deployment, roadmap ve open questions bölümlerini birleştirir. ayrıca son konuşmadaki onaylanan kararlar — go infra/control plane, docker sdk runner, nats, json plugin manifest, git-like snapshot, marketplace entitlement ve k8s/argo’nun staged backend olması — nihai sistem tasarımına işlendi.</p>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white py-8 text-center text-sm text-slate-500">
+    tek dosyalık html rapor · synaptix / gliahub · business + technical system design
+  </footer>
+</body>
+</html>
